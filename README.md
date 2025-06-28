@@ -4,16 +4,6 @@
   <br>
   <br>
 
-  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/alvarobraz/app-daily-diet?style=for-the-badge"/>
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alvarobraz/app-daily-diet?style=for-the-badge">
-  <img alt="GitHub license" src="https://img.shields.io/github/license/alvarobraz/app-daily-diet?style=for-the-badge">
-
-  <br>
-
-  <a href="https://github.com/alvarobraz/app-daily-diet">
-    <img alt="Made by Álvaro Braz" src="https://avatars.githubusercontent.com/u/60791524?v=4">
-  </a>
-
   <a href="https://www.linkedin.com/in/alvarobraz/">
     <img alt="Made by alvarobraz" src="https://img.shields.io/badge/made%20by-alvarobraz-%237519C1?style=for-the-badge">
   </a>
@@ -49,7 +39,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 -   **[@fastify/cookie](https://www.npmjs.com/package/@fastify/cookie)**: Plugin para Fastify para gerenciar cookies.
 
 ## Estrutura ##
-
+```
 ├── db
 │   ├── app.db
 │   └── migrations
@@ -76,7 +66,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 │       ├── fastify.d.ts
 │       └── knex.d.ts
 └── tsconfig.json
-
+```
 ## :memo: Requisitos do Projeto ##
 
 Este projeto implementa as seguintes **funcionalidades** e **regras de negócio**:
