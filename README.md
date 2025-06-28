@@ -41,30 +41,30 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 ## Estrutura ##
 ```
 ├── db
-│   ├── app.db
-│   └── migrations
-│       ├── 20250627034211_create-users.ts
-│       ├── 20250627041026_add-session-id-to-users.ts
-│       └── 20250628040812_create-meals.ts
+│   ├── app.db
+│   └── migrations
+│       ├── 20250627034211_create-users.ts
+│       ├── 20250627041026_add-session-id-to-users.ts
+│       └── 20250628040812_create-meals.ts
 ├── Insomnia.json
 ├── knexfile.ts
 ├── package.json
 ├── package-lock.json
 ├── README.md
 ├── src
-│   ├── app.ts
-│   ├── database.ts
-│   ├── env
-│   │   └── index.ts
-│   ├── middlewares
-│   │   └── check-session-id-exists.ts
-│   ├── routes
-│   │   ├── meals.ts
-│   │   └── users.ts
-│   ├── server.ts
-│   └── @types
-│       ├── fastify.d.ts
-│       └── knex.d.ts
+│   ├── app.ts
+│   ├── database.ts
+│   ├── env
+│   │   └── index.ts
+│   ├── middlewares
+│   │   └── check-session-id-exists.ts
+│   ├── routes
+│   │   ├── meals.ts
+│   │   └── users.ts
+│   ├── server.ts
+│   └── @types
+│       ├── fastify.d.ts
+│       └── knex.d.ts
 └── tsconfig.json
 ```
 ## :memo: Requisitos do Projeto ##
@@ -99,7 +99,7 @@ Para configurar e rodar o projeto em sua máquina local, siga os passos abaixo:
 
 ```bash
 # Clone este repositório
-$ git clone [https://github.com/alvarobraz/app-daily-diet.git](https://github.com/alvarobraz/app-daily-diet.git)
+$ git clone https://github.com/alvarobraz/app-daily-diet.git
 
 # Acesse o diretório do projeto
 $ cd app-daily-diet
