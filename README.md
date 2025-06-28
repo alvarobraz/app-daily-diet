@@ -4,10 +4,6 @@
   <br>
   <br>
 
-  <a href="https://github.com/alvarobraz/app-daily-diet">
-    <img alt="Made by Álvaro Braz" src="https://avatars.githubusercontent.com/u/60791524?v=4">
-  </a>
-
   <a href="https://www.linkedin.com/in/alvarobraz/">
     <img alt="Made by alvarobraz" src="https://img.shields.io/badge/made%20by-alvarobraz-%237519C1?style=for-the-badge">
   </a>
