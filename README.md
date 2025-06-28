@@ -39,8 +39,6 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 -   **[@fastify/cookie](https://www.npmjs.com/package/@fastify/cookie)**: Plugin para Fastify para gerenciar cookies.
 
 ## Estrutura ##
-
-.
 ├── db
 │   ├── app.db
 │   └── migrations
