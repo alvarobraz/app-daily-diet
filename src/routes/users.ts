@@ -78,16 +78,6 @@ export async function usersRoutes(app: FastifyInstance) {
   })
 
   app.get(
-    '/',
-    async () => {
-      const users = await knex('users')
-      .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at') 
-
-      return { users }
-    },
-  )
-
-  app.get(
     '/me',
     {
       preHandler: [checkSessionIdExists],
@@ -95,35 +85,6 @@ export async function usersRoutes(app: FastifyInstance) {
     async (request) => {
       
       return { user: request.user }
-    },
-  )
-
-  app.get(
-    '/:id',
-    {
-      preHandler: [checkSessionIdExists],
-    },
-    async (request, reply) => {
-      const getTransactionsParamsSchema = z.object({
-        id: z.string().uuid(),
-      })
-
-      const { id } = getTransactionsParamsSchema.parse(request.params)
-
-      const user = await knex('users')
-        .where({
-          id
-        })
-        .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at')
-        .first()
-
-        if (!user) {
-          return reply.status(404).send({ message: 'User not found.' })
-        }
-
-      return {
-        user,
-      }
     },
   )
 }

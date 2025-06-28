@@ -10,6 +10,3 @@ db/*.db
 
 # Build
 build
-
-#JSON
-Insomnia.json
