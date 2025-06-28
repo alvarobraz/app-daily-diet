@@ -39,6 +39,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 -   **[@fastify/cookie](https://www.npmjs.com/package/@fastify/cookie)**: Plugin para Fastify para gerenciar cookies.
 
 ## Estrutura ##
+...
 ├── db
 │   ├── app.db
 │   └── migrations
@@ -65,7 +66,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do projeto:
 │       ├── fastify.d.ts
 │       └── knex.d.ts
 └── tsconfig.json
-
+...
 ## :memo: Requisitos do Projeto ##
 
 Este projeto implementa as seguintes **funcionalidades** e **regras de negócio**:
