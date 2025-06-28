@@ -8,7 +8,7 @@ export async function usersRoutes(app: FastifyInstance) {
   app.post('/', async (request, reply) => {
     const createUserBodySchema = z.object({
       name: z.string(),
-      email: z.string().email(), // Adicionado validação de e-mail
+      email: z.string().email(),
       age: z.number(),
       weight_kg: z.number(),
       height_cm: z.number(),
@@ -17,14 +17,14 @@ export async function usersRoutes(app: FastifyInstance) {
     const { name, email, age, weight_kg, height_cm } =
       createUserBodySchema.parse(request.body)
 
-    // Verifica se já existe um usuário com o mesmo e-mail
+  
     const existingUser = await knex('users').where({ email }).first()
     if (existingUser) {
       return reply.status(409).send({ message: 'User with this email already exists.' })
     }
 
     const userId = randomUUID()
-    const sessionId = randomUUID() // Gerar sessionId para o novo usuário
+    const sessionId = randomUUID() 
 
     await knex('users').insert({
       id: userId,
@@ -33,22 +33,20 @@ export async function usersRoutes(app: FastifyInstance) {
       age,
       weight_kg,
       height_cm,
-      session_id: sessionId // Salva o session_id no banco de dados
+      session_id: sessionId 
     })
 
-    // Define o cookie de sessão para o novo usuário
+    
     reply.setCookie('sessionId', sessionId, {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
-      httpOnly: true, // Para segurança, o cookie não pode ser acessado via JavaScript do lado do cliente
-      secure: process.env.NODE_ENV === 'production', // Apenas em HTTPS para produção
-      sameSite: 'lax', // Proteção contra CSRF
+      httpOnly: true,
     })
 
     return reply.status(201).send({ userId })
   })
 
-  // Rota de autenticação (login)
+
   app.post('/auth', async (request, reply) => {
     const authenticateUserBodySchema = z.object({
       email: z.string().email(),
@@ -62,17 +60,15 @@ export async function usersRoutes(app: FastifyInstance) {
       return reply.status(401).send({ message: 'Invalid credentials.' })
     }
 
-    // Se o usuário existir, gera um novo sessionId ou usa o existente (se preferir manter o mesmo)
-    // Para simplificar e garantir que um novo sessionId seja sempre gerado no login:
     const newSessionId = randomUUID()
 
     await knex('users')
       .where({ id: user.id })
-      .update({ session_id: newSessionId }) // Atualiza o session_id no banco de dados
+      .update({ session_id: newSessionId })
 
     reply.setCookie('sessionId', newSessionId, {
       path: '/',
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24 * 7, // 7 days
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -85,7 +81,7 @@ export async function usersRoutes(app: FastifyInstance) {
     '/',
     async () => {
       const users = await knex('users')
-      .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at') // Evita expor session_id
+      .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at') 
 
       return { users }
     },
@@ -94,7 +90,7 @@ export async function usersRoutes(app: FastifyInstance) {
   app.get(
     '/me',
     {
-      preHandler: [checkSessionIdExists], // Aplica o middleware aqui
+      preHandler: [checkSessionIdExists],
     },
     async (request) => {
       
@@ -114,13 +110,11 @@ export async function usersRoutes(app: FastifyInstance) {
 
       const { id } = getTransactionsParamsSchema.parse(request.params)
 
-      // const { sessionId } = request.cookies
-
       const user = await knex('users')
         .where({
           id
         })
-        .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at') // Evita expor session_id
+        .select('id', 'name', 'email', 'age', 'weight_kg', 'height_cm', 'created_at')
         .first()
 
         if (!user) {
