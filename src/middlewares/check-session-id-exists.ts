@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { knex } from '../database'
 
-// Defina uma interface para o tipo de usuário esperado
 interface UserPayload {
   id: string;
   name: string;
@@ -10,7 +9,7 @@ interface UserPayload {
   weight_kg: number;
   height_cm: number;
   created_at: string;
-  session_id?: string; // session_id é opcional no payload para o request.user
+  session_id?: string;
 }
 
 export async function checkSessionIdExists(
@@ -25,10 +24,9 @@ export async function checkSessionIdExists(
     })
   }
 
-  // Busca o usuário no banco de dados e assevera o tipo para UserPayload
   const user = await knex('users')
     .where('session_id', sessionId)
-    .first<UserPayload>() // <--- Adicione a asserção de tipo aqui
+    .first<UserPayload>()
 
   if (!user) {
     return reply.status(401).send({
@@ -36,6 +34,5 @@ export async function checkSessionIdExists(
     })
   }
 
-  // Se o usuário for encontrado, anexa-o ao objeto request
   request.user = user
 }
